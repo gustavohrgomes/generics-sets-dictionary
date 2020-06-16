@@ -116,3 +116,98 @@ class Program {
   }
 }
 ```
+
+#### HashSet<T> e SortedSet<T>
+
+Esses dois representam um conjunto de elementos (Similar ao da Álgebra):
+  - Não admite repetições
+  - Elementos não possuem posição
+  - O acesso, inserção e remoção de elementos são rápidos
+  - Oferece operações eficientes de conjuntos: interseção, união, diferença;
+
+##### Diferenças
+
+HashSet
+  - Armazenamento em uma Hash Table
+  - Extremamente rápido: inserção, remoção e busca O(1) (Ordem de 1)
+  - A ordem dos elementos não é garantida
+
+SortedSet
+  - Armazenamento em árvore
+  - Rápido: Inserção, remoção e busca O(log(n)) (busca logarítmica)
+  - Os elementos são armazenados ordenamanente conforme implementação `IComparer<T>`
+
+
+Alguns métodos importantes
+  - Add
+  - Clear
+  - Contains
+  - UnionWith(other) - operação união: adiciona no conjunto os elementos do outro conjunto, sem repetição
+  - IntersectWith(other) - operação interseção: remove do conjunto os elementos não contidos em other
+  - ExceptWith(other) - operação diferença: remove do conjuntos os elementos contidos em other
+  - Remove(T)
+  - RemoveWhere(predicate)
+
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace Course {
+
+  class Program {
+    static void Main(string[] args) {
+
+      HashSet<string> set = new HashSet<string>();
+
+      set.Add("TV");
+      set.Add("Notebook");
+      set.Add("Tablet");
+
+      Console.WriteLine(set.Contains("Notebook"));
+
+      foreach (String p in set) {
+        Console.WriteLine(p);
+      }
+    }
+  }
+}
+```
+
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace Course {
+  class Program {
+    static void Main(string[] args) {
+      
+      SortedSet<int> a = new SortedSet<int>() { 0, 2, 4, 5, 6, 8, 10 };
+      SortedSet<int> b = new SortedSet<int>() { 5, 6, 7, 8, 9, 10 };
+      
+      //union
+      SortedSet<int> c = new SortedSet<int>(a);
+      c.UnionWith(b);
+      printCollection(c);
+      
+      //intersection
+      SortedSet<int> d = new SortedSet<int>(a);
+      d.IntersectWith(b);
+      printCollection(d);
+      
+      //difference
+      SortedSet<int> e = new SortedSet<int>(a);
+      e.ExceptWith(b);
+      printCollection(e);
+      }
+      
+      static void printCollection<T>(IEnumerable<T> collection) {
+        
+        foreach(T obj in collection) {
+          Console.Write(obj + " ");
+        }
+        Console.WriteLine();
+      }
+  }
+}
+```
+
