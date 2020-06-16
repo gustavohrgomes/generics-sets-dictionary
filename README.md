@@ -125,7 +125,7 @@ Esses dois representam um conjunto de elementos (Similar ao da Álgebra):
   - O acesso, inserção e remoção de elementos são rápidos
   - Oferece operações eficientes de conjuntos: interseção, união, diferença;
 
-##### Diferenças
+#### Diferenças
 
 HashSet
   - Armazenamento em uma Hash Table
@@ -211,7 +211,7 @@ namespace Course {
 }
 ```
 
-##### Como as coleções Hash testam igualdade?
+#### Como as coleções Hash testam igualdade?
 
 Se `GetHashCode` e `Equals` estiverem implementados:
   - Primeiro GetHashCode. Se der igual, usa Equals para confirmar.
