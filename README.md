@@ -1,6 +1,6 @@
 # Generics, Set e Dictionary
 
-#### Generics
+### Generics
 
 Os `Generics` permitem que **Classes**, **Interfaces** e **métodos** possam ser parametrizados por tipo. Seus benefícios são:
 
@@ -29,7 +29,7 @@ Restrições são especificadas usando a palavra-chave contextual `where`. A tab
 - where T : <base type name>
 - where T : U
 
-#### GetHashCode e Equals
+### GetHashCode e Equals
 
 São operações da classe Object utilizada para comparar se um objeto é igual a outro.
 
@@ -117,7 +117,7 @@ class Program {
 }
 ```
 
-#### HashSet<T> e SortedSet<T>
+### HashSet<T> e SortedSet<T>
 
 Esses dois representam um conjunto de elementos (Similar ao da Álgebra):
   - Não admite repetições
@@ -275,4 +275,66 @@ namespace Course {
     }
   }
 }
+```
+
+### Dictionary<TKey, TValue>
+
+O Dictionary é uma coleção de pares chave/valor
+  - Assim como o conjunto Hash, ele não admite repetições do objeto chave
+  - Os elementos são indexados pelo objeto chave, ou seja, não possuem posição como listas e arrays
+  - Acesso, inserção e remoção dos elementos são rápidos
+
+Os usos mais comuns do dictionay são:
+  - Cookies
+  - Local Storage
+  - Qualquer modelo chave-valor
+
+#### Alguns métodos importantes
+
+- dictionary[key] - acessa o elemento pela chave informada
+- Add(key, value) - adiciona o elemento (em caso de chaves iguais, ele lança uma exceção)
+- Clear() - esvazia a coleção
+- Count - retorna a quantidade de elementos 
+- ContainsKey(key) - verifica se a chave passada como argumento existe
+- ContainsValue(Value) - verifica se o valor passado como argumento existe
+- Remove(key) - remove o elemento que contém a chave passada como argumento
+
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace course
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      Dictionary<string, string> cookies = new Dictionary<string, string>();
+
+      cookies["user"] = "maria";
+      cookies["email"] = "maria@gmail.com";
+      cookies["phone"] = "99771122";
+      cookies["phone"] = "99771133";
+
+      Console.WriteLine(cookies["email"]);
+      cookies.Remove("email");
+      Console.WriteLine("Phone number: " + cookies["phone"]);
+
+      if (cookies.ContainsKey("email")) {
+        Console.WriteLine("Email: " + cookies["email"]);
+      }
+      else {
+        Console.WriteLine("There is not 'email' key");
+      }
+
+      Console.WriteLine("Size: " + cookies.Count);
+      Console.WriteLine("ALL COOKIES:");
+      foreach (KeyValuePair<string, string> item in cookies) {
+        Console.WriteLine(item.Key + ": " + item.Value);
+      }
+    }     
+  }
+}
+
+
 ```
